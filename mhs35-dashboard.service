@@ -1,0 +1,14 @@
+[Unit]
+Description=MHS-3.5 stats dashboard
+After=docker.service network-online.target
+Wants=docker.service network-online.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/mhs35-dashboard/mhs35_dashboard.py
+Restart=always
+RestartSec=3
+User=root
+# root needed for /dev/fb1 write access and the docker.sock
+
+[Install]
+WantedBy=multi-user.target
