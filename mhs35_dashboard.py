@@ -196,7 +196,7 @@ def get_containers():
     if _docker_client is None:
         return None
     try:
-        return sorted((c.name, c.status) for c in _docker_client.containers.list(all=True) if not c.name.endswith('ignore-status'))
+        return sorted((c.name, c.status) for c in _docker_client.containers.list(all=True))
     except Exception:
         return None
 
@@ -209,6 +209,9 @@ def worst_docker_status(containers):
         return OK_GREEN, "NONE"
     worst = OK_GREEN
     for _, status in containers:
+        #ignore any containers with this text because we don't care about them
+        if name.find('ignore-status') >= 0:
+            continue
         if status in RED_STATUSES:
             return BAD_RED, "ISSUE"
         if status in YELLOW_STATUSES:
