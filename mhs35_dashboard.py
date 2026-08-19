@@ -196,7 +196,7 @@ def get_containers():
     if _docker_client is None:
         return None
     try:
-        return sorted((c.name, c.status) for c in _docker_client.containers.list(all=True))
+        return sorted((c.name, c.status) for c in _docker_client.containers.list(all=True) if not c.name.endswith('ignore-status'))
     except Exception:
         return None
 
