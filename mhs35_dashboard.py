@@ -415,7 +415,7 @@ def draw_docker():
 
     bx0, by0, bx1, by1 = DOCKER_BACK_BUTTON
     d.rounded_rectangle([bx0, by0, bx1, by1], radius=10, outline=ACCENT, width=2)
-    d.text((bx0 + 14, by0 + 12), "\u2190 BACK", font=F_MD, fill=ACCENT)
+    d.text((bx0 + 14, by0 + 12), "< BACK", font=F_MD, fill=ACCENT)
 
     d.text((16, 74), "CONTAINERS", font=F_LG, fill=FG)
     d.line([(16, 108), (WIDTH - 16, 108)], fill=DIM)
